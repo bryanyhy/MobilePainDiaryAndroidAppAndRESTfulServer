@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+<div id="plot" style="width:1100px;height:750px;"></div>
+-->
+<html>
+    <head>
+        <title>Pain Diary Service</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/LineGraph1.js" type="text/javascript"></script>
+        <script src="js/plotly-latest.min.js" type="text/javascript"></script>
+    </head>
+    
+    <body>            
+        <article>
+            <header>
+                <h1>Line Graph</h1>
+            </header>
+        </article>
+        
+        <p id="output"></p>
+        <script>
+            getPatientName()
+        </script>
+            
+        <p>
+        <label>Select a weather variable: </label>
+        <select id="weather">
+            <option value="temperature">Temperature</option>
+            <option value="humidity">Humidity</option>
+            <option value="windSpeed">Wind Speed</option>
+            <option value="atmosphericPressure">Atmospheric Pressure</option>
+        </select>
+        </p>
+        
+        <table>
+            <tr>
+                <td>Enter Start Date : </td>
+                <td><input type="text" id="startDate" size="20"/></td>
+            </tr>
+            <tr>
+                <td>Enter End Date : </td>
+                <td><input type="text" id="endDate" size="20"/></td>
+            </tr>            
+        </table>
+        <input type="button" value="Double click to generate the Line Graph" onclick="drawLineGraph()"/>
+        <div id="plot" style="width:1100px;height:750px;"></div>
+    </body>
+</html>
+

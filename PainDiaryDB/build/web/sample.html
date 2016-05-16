@@ -1,0 +1,125 @@
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+        >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <script src="http://www.mapquestapi.com/sdk/js/v7.2.s/mqa.toolkit.js?key=O3lC0DyrIRUXRaRfqzdn7GCaH073L7Os"></script>
+
+    <script type="text/javascript">
+        //Get parameter by name
+        
+        function getParameterByName(name, url) {
+            if (!url)
+                url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+            if (!results)
+                return null;
+            if (!results[2])
+                return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        //Format string to JSON string
+        var data_json = JSON.stringify(eval("(" + getParameterByName("data") + ")"));
+        var lat = "";
+        var lng = "";
+        if (data_json !== "null") {
+            //Convert JSON string to JSON object
+            var det = JSON.parse(data_json);
+            lat = det.lat;
+            lng = det.lng;
+        }
+
+        var data = {lat: -37.829853, lng: 145.020905};
+        if (lat !== "" && !lng !== "") {
+            data = new MQA.LatLng(lat, lng);
+        }
+            
+        MQA.EventUtil.observe(window, 'load', function() {
+
+        var options = {
+          elt: document.getElementById('map'),
+          zoom: 10,
+          latLng: data,
+          mtype: 'map',
+          bestFitMargin: 0,
+          zoomOnDoubleClick: true
+        };
+        
+        var rooturl = "http://www.mapquestapi.com/search/v2/radius?key=O3lC0DyrIRUXRaRfqzdn7GCaH073L7Os&callback=renderBasicSearchNarrative&origin="; 
+        var rooturl2 = "&hostedData=mqap.ntpois%7Cgroup_sic_code=?%7C806202&radius=100&units=k&maxMatches=10";
+        function createRequest() {
+        try {
+            request = new XMLHttpRequest();
+        } catch (trymicrosoft) {
+            try {
+                request = new ActiveXObject("MsXML2.XMLHTTP"); 
+            } catch (othermicrosoft) {
+                try {
+                    request = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (failed) {
+                    request = null;
+                }
+            } 
+        }
+        if (request == null)
+            alert("Error creating request object!");
+        }
+
+        function getNearestHospital()
+        { 
+            createRequest();
+            request.onreadystatechange = handleHospitalJSONResponse; 
+            request.open("GET", rooturl + lat + "," + lng + rooturl2, true); 
+            request.send(null);
+        }
+
+        function handleHospitalJSONResponse() 
+        {
+            if (request.readyState == 4 && request.status == 200)
+            {
+                var str1 = request.responseText;
+                var str2 = str1.substring(27);
+                var str3 = str2.slice(0,-2);
+                var str5 = str3.split("origin")[0];
+                var str6 = str5.slice(0,-2) + "}";
+                var obj = JSON.parse(str6);
+                for (i = 0; i < obj.searchResults.length; i++) {
+                    var hname = obj.searchResults[i].name;             
+                    var obj2 = obj.searchResults[i].fields;
+                    var obj3 = obj2.mqap_geography;
+                    var obj4 = obj3.latLng;
+                    var hlng = obj4.lng;
+                    var hlat = obj4.lat;                  
+                    hdata = new MQA.LatLng(hlat, hlng);
+                    var poiHandle = new MQA.Poi(hdata);
+                    poiHandle.setInfoContentHTML(hname);
+                    window.map.addShape(poiHandle);
+                    var icon = new MQA.Icon('HospitalRed2.png', 20, 29);
+                    poiHandle.setIcon(icon);  
+                }
+            }
+        }
+      
+        window.map = new MQA.TileMap(options);
+        MQA.withModule('geolocationcontrol', 'mousewheel', function() {
+          window.map.addControl(new MQA.GeolocationControl());
+          window.map.enableMouseWheelZoom();
+        });
+        // create a POI by passing in a lat/lng object to the MQA.Poi constructor
+        var poiHandle = new MQA.Poi(data);
+        // set the InfoWindow contents for the POI
+        //  - by default, the HTML content will be displayed when the POI receives a mouseclick event
+        poiHandle.setInfoContentHTML('Your Location');
+        // add POI to the map's default shape collection
+        window.map.addShape(poiHandle);
+        var icon = new MQA.Icon('home.png', 20, 29);
+        poiHandle.setIcon(icon);
+        getNearestHospital();
+      });
+    </script>
+</head>
+<body><div id="map" style="width:300px; height:350px;"></div></body></html>

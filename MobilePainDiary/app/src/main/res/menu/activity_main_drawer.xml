@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_drecords"
+            android:title="Add Daily Records" />
+        <item
+            android:id="@+id/nav_srecords"
+            android:title="Search Daily Records" />
+        <item
+            android:id="@+id/nav_reports"
+            android:title="View Reports" />
+        <item
+            android:id="@+id/nav_maps"
+            android:title="Maps" />
+    </group>
+</menu>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Pain Diary Service</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/Doctor.js" type="text/javascript"></script>
+    </head>
+    
+    <body>            
+        <article>
+            <header>
+                <h1>Doctor Database</h1>
+            </header>
+        </article>
+        <table>
+            <tr>
+                <td>Enter Doctor ID : </td>
+                <td><input type="text" id="docId" size="20"/></td>
+            </tr>
+            <tr>
+                <td>Doctor First Name : </td>
+                <td><input type="text" id="docFirstname" size="20"/></td>
+            </tr>
+            <tr>
+                <td>Doctor Surname : </td>
+                <td> <input type="text" id="docSurname" size="20"/> </td>
+            </tr>
+            <tr>
+                <td>Doctor Phone : </td>
+                <td> <input type="text" id="docPhone" size="20"/></td>
+            </tr>
+            <tr>
+                <td>Clinic Address : </td>
+                <td> <input type="text" id="clinicAddress" size="20"/></td>
+            </tr>
+            <tr>
+                <td>Clinic Phone : </td>
+                <td> <input type="text" id="clinicPhone" size="20"/></td>
+            </tr>
+        </table>
+        <input type="button" value="Get All Dcotors Detail" onclick="getAllDoctors()"/>
+        <input type="button" value="Get Specific Doctor Detail by ID" onclick="getDoctor()"/>
+        <input type="button" value="Add Doctor" onclick="addDoctor()"/>
+        <input type="button" value="Update Doctor Details" onclick="updateDoctor()"/>
+        <input type="button" value="Delete Doctor" onclick="deleteDoctor()"/>
+        <p id="output"></p>
+    </body>
+</html>

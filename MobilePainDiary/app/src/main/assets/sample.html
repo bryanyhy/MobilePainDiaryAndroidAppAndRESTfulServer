@@ -1,0 +1,39 @@
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+        >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <script src="http://www.mapquestapi.com/sdk/js/v7.2.s/mqa.toolkit.js?key=O3lC0DyrIRUXRaRfqzdn7GCaH073L7Os"></script>
+
+    <script type="text/javascript">
+    MQA.EventUtil.observe(window, 'load', function() {
+
+    var options = {
+      elt: document.getElementById('map'),
+      zoom: 10,
+      latLng: { lat: -37.876470, lng: 145.044078 },
+      mtype: 'map',
+      bestFitMargin: 0,
+      zoomOnDoubleClick: true
+    };
+
+            window.map = new MQA.TileMap(options);
+            MQA.withModule('geolocationcontrol', 'mousewheel', function() {
+              window.map.addControl(new MQA.GeolocationControl());
+              window.map.enableMouseWheelZoom();
+            });
+            // create a POI by passing in a lat/lng object to the MQA.Poi constructor
+            var poiHandle = new MQA.Poi({ lat: -37.878173, lng:145.04536639 });
+            // set the InfoWindow contents for the POI
+            //  - by default, the HTML content will be displayed when the POI receives a mouseclick event
+            poiHandle.setInfoContentHTML('Monash University Caulfield Campus');
+            // add POI to the map's default shape collection
+            window.map.addShape(poiHandle);
+            var icon = new MQA.Icon('HospitalRed2.png', 20, 29);
+            poiHandle.setIcon(icon);
+          });
+      </script>
+      </head>
+<body><div id="map" style="width:300px; height:350px;"></div></body></html>

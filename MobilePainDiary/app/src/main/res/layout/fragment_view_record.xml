@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose your Pain Level:" android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="(0 is minimum, 11 is maximum)"
+                android:id="@+id/textView7"
+                android:layout_below="@+id/textView2"
+                android:layout_alignParentStart="true" />
+
+            <SeekBar
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/painSeekbar"
+                android:layout_marginTop="62dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:indeterminate="false"
+                android:max="11" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Pain Level: 0 / 11"
+                android:id="@+id/painLevelText"
+                android:layout_marginTop="23dp"
+                android:layout_below="@+id/painSeekbar"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Select your Pain Location:"
+                android:id="@+id/textView8"
+                android:layout_below="@+id/painLevelText"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="30dp" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/painLocationSpinner"
+                android:layout_below="@+id/textView8"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Select your Pain Trigger:"
+                android:id="@+id/textView9"
+                android:layout_below="@+id/painLocationSpinner"
+                android:layout_alignParentStart="true" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/painTriggerSpinner"
+                android:layout_below="@+id/textView9"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Select your Mood:"
+                android:id="@+id/textView10"
+                android:layout_below="@+id/painTriggerSpinner"
+                android:layout_alignParentStart="true" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/moodSpinner"
+                android:layout_below="@+id/textView10"
+                android:layout_alignParentStart="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                android:id="@+id/editButton"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:id="@+id/deleteButton"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</RelativeLayout>
